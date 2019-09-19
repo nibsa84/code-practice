@@ -1,5 +1,7 @@
 package com.springboot.countriesAPI.repository;
 
+import java.io.IOException;
+import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -7,14 +9,14 @@ import java.util.stream.Collectors;
 import javax.annotation.PostConstruct;
 
 import org.springframework.stereotype.Repository;
-
 import com.springboot.countriesAPI.domain.Country;
 
 @Repository
 public class CountryDaoImpl implements CountryDao {
 
-	private static final Map<String, Country> countries = new HashMap<String, Country>();
-
+	private static Map<String, Country> countries = new HashMap<String, Country>();
+	LocalDate date = LocalDate.now();
+	
 	@PostConstruct
 	public void initData() {
 		Country spain = new Country();
@@ -23,7 +25,7 @@ public class CountryDaoImpl implements CountryDao {
 		spain.setLargestCity("Madrid");
 		spain.setArea(194897L);
 		spain.setPopulation(47000000L);
-		// spain.setDateAdded(09/04/2019);
+        spain.setDateAdded(date);
 		countries.put(spain.getName(), spain);
 
 		Country poland = new Country();
@@ -32,7 +34,7 @@ public class CountryDaoImpl implements CountryDao {
 		poland.setLargestCity("Warsaw");
 		poland.setArea(120726L);
 		poland.setPopulation(38430000L);
-		// poland.setDateAdded(38186860);
+		poland.setDateAdded(date);
 
 		countries.put(poland.getName(), poland);
 
@@ -42,7 +44,7 @@ public class CountryDaoImpl implements CountryDao {
 		uk.setLargestCity("London");
 		uk.setArea(93628L);
 		uk.setPopulation(66040000L);
-		// uk.setDateAdded(38186860);
+	    uk.setDateAdded(date);
 
 		countries.put(uk.getName(), uk);
 	}
@@ -58,5 +60,10 @@ public class CountryDaoImpl implements CountryDao {
                 .stream()
                 .filter(x -> x.getKey().equalsIgnoreCase(name))
                 .collect(Collectors.toMap(x -> x.getKey(), x -> x.getValue()));
+	}
+
+	@Override
+	public void addCountry(String name, Country country) {
+		countries.put(name, country);	 
 	}
 }

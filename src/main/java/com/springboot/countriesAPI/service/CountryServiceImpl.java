@@ -4,7 +4,6 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import com.springboot.countriesAPI.domain.Country;
 import com.springboot.countriesAPI.repository.CountryDao;
 
@@ -22,6 +21,12 @@ public class CountryServiceImpl implements CountryService{
 	@Override
 	public Map<String, Country> getCountryByName(String name) {
 		return countryDao.getCountryByName(name);
+	}
+
+	@Override
+	public void addCountry(String name, Country country) {
+		countryDao.addCountry(name, country);
+		
 	}
 
 }

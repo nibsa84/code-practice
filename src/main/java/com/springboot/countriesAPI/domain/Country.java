@@ -1,6 +1,6 @@
 package com.springboot.countriesAPI.domain;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 import org.springframework.stereotype.Component;
 
@@ -12,13 +12,13 @@ public class Country {
 	private String largestCity;
 	private Long area;
 	private Long population;
-	private Date dateAdded;
+	private LocalDate dateAdded;
 	
 	public Country() {
 	}
 	
 	
-	public Country(String name, String capital, String largestCity, Long area, Long population, Date dateAdded) {
+	public Country(String name, String capital, String largestCity, Long area, Long population, LocalDate dateAdded) {
 		super();
 		this.name = name;
 		this.capital = capital;
@@ -69,11 +69,11 @@ public class Country {
 		this.population = population;
 	}
 
-	public Date getDateAdded() {
+	public LocalDate getDateAdded() {
 		return dateAdded;
 	}
 
-	public void setDateAdded(Date dateAdded) {
-		this.dateAdded = dateAdded;
+	public void setDateAdded(LocalDate date) {
+		this.dateAdded = date;
 	}
 }
